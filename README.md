@@ -17,28 +17,38 @@ This repository includes configuration for:
 * **Launcher**: `rofi`
 * **Logout menu**: `wlogout`
 * **Audio visualizer**: `cava`
+* **Bootloader**: `GRUB`
+* **Boot Splash**: `Plymouth`
+* **Login Manager**: `SDDM`
 
 ## 📂 Structure
 ```
 .
 ├── .config/
-│   ├── cava/
+│   ├── bobaland/       # Personal scripts & tools
+│   ├── cava/           # Audio visualizer
 │   ├── colors/         # Color schemes
-│   ├── fontconfig/
-│   ├── ghostty/
-│   ├── hypr/
-│   ├── nvim/
-│   ├── ohmyposh/
-│   ├── rofi/
-│   ├── swaync/
-│   ├── viegphunt/      # Personal scripts
-│   ├── waybar/
-│   └── wlogout/
+│   ├── fontconfig/     # Font configurations
+│   ├── ghostty/        # Ghostty terminal config
+│   ├── grub/           # GRUB bootloader config
+│   ├── hypr/           # Hyprland window manager
+│   ├── nvim/           # Neovim config
+│   ├── ohmyposh/       # Shell prompt
+│   ├── plymouth/       # Plymouth boot splash
+│   ├── rofi/           # Application launcher
+│   ├── sddm/           # SDDM login manager theme
+│   ├── swaync/         # Notification daemon
+│   ├── waybar/         # Status bar
+│   └── wlogout/        # Logout menu
+├── .tmux/              # Tmux plugins & data
+├── .gitignore
 ├── .stow-local-ignore  # Stow ignore list
-├── .tmux.conf
-├── .zshrc
+├── .tmux.conf          # Tmux configuration
+├── .zshrc              # Zsh configuration
 ├── LICENSE
-└── README.md
+├── README.md
+├── sddm.conf           # SDDM global config
+└── update-dotfiles.sh  # Updater script
 ```
 
 ## 🚀 Installation
@@ -91,7 +101,7 @@ git push
 
 - Some configs may require additional dependencies
 - Check individual config directories for specific requirements
-- Scripts in `viegphunt/` may need executable permissions: `chmod +x .config/viegphunt/*`
+- Scripts in `bobaland/` may need executable permissions: `chmod +x .config/bobaland/*`
 
 ## 📜 License
 
