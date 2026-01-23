@@ -1,0 +1,309 @@
+@import url("../colors/colors.css");
+
+* {
+    outline: none;
+    font-family: "Segoe UI Variable Static Text", "Font Awesome 6 Free";
+    font-size: 18px;
+    text-shadow: none;
+    color: @foreground;
+    background-color: transparent;
+    background: transparent;
+}
+
+.control-center {
+    background-color: alpha(@background, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.45);
+    padding: 8px;
+    margin: 2px 2px 1px 4px;
+    border-radius: 14px;
+}
+
+.control-center .notification-row .notification-background {
+    border-radius: 15px;
+    margin-top: 5px;
+}
+
+/* ===== Hide scrollbar completely ===== */
+scrollbar {
+    background: transparent;
+    min-width: 0;
+    min-height: 0;
+}
+
+scrollbar slider {
+    background: transparent;
+}
+
+scrollbar trough {
+    background: transparent;
+}
+
+/* GTK4 fallback */
+* {
+    scrollbar-width: none;
+}
+
+.notification {
+    font-size: 12px;
+    background-color: alpha(@background, 0.8);
+}
+
+.notification > *:last-child > *  {
+    margin: 5px;
+}
+
+.summary { font-size: 1.1rem; }
+.time { font-size: 0.8rem; }
+.body { font-size: 1rem; }
+
+.notification-content {
+    padding: 15px 10px 10px 20px;
+}
+
+.notification-action > button {
+    padding: unset;
+    margin: unset;
+}
+.notification-action > label {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.notification.critical {
+    background-color: alpha(#e64553, 0.5);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.65);
+}
+.notification.low,
+.notification.normal  {
+    background-color: alpha(@background, 0.5);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.65);
+}
+
+.close-button {
+    background-color: alpha(@gray, 0.8);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35);
+}
+.close-button:hover {
+    background-color: alpha(@red, 0.8);
+}
+
+.notification-group-header,
+.notification-group-icon {
+    font-size: 0.9rem;
+}
+
+.notification-group-collapse-button,
+.notification-group-close-all-button {
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35);
+    background-color: @gray;
+}
+
+.notification-group-collapse-button:hover {
+    background-color: alpha(@blue, 0.8);
+}
+.notification-group-close-all-button:hover {
+    background-color: alpha(@red, 0.8);
+}
+
+trough highlight {
+    background: @blue;
+}
+scale trough {
+    margin: 0rem 1rem;
+    background-color: @gray;
+    min-height: 8px;
+    min-width: 70px;
+}
+slider {
+    background-color: @foreground;
+}
+tooltip {
+    background-color: @gray;
+}
+
+/* Empty notifications styling */
+.blank-window {
+    background: transparent;
+}
+
+.blank-window .empty {
+    margin-top: 50px;
+}
+
+.blank-window .empty image {
+    color: alpha(@foreground, 0.4);
+    font-size: 96px;
+    -gtk-icon-size: 96px;
+    min-width: 96px;
+    min-height: 96px;
+}
+
+.blank-window .empty label {
+    color: alpha(@foreground, 0.5);
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+/*** Widgets ***/
+/* Buttons widget */
+.widget-buttons-grid {
+    font-size: 1rem;
+    padding: 20px 21px 10px;
+    margin: unset;
+}
+.widget-buttons-grid > flowbox > flowboxchild > button {
+    background: @gray;
+    box-shadow: 0px 0px 10px alpha(@background, 0.8);
+    border-radius: 12px;
+    min-width: 60px;
+    min-height: 30px;
+    padding: 6px;
+    margin: 0 3px 0;
+    transition: all .5s ease;
+}
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+    background: @select;
+}
+.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
+    background: @blue;
+}
+.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked:hover {
+    background: alpha(@blue, 0.8);
+}
+
+/* Mpris widget */
+@define-color mpris-bg rgba(0, 0, 0, 0.65);
+@define-color mpris-text #ffffff;
+@define-color mpris-subtext rgba(255, 255, 255, 0.75);
+@define-color mpris-btn-hover rgba(255, 255, 255, 0.12);
+
+.widget-mpris {
+    margin: 0;
+    padding: 0;
+}
+
+/* player full block */
+.widget-mpris .widget-mpris-player {
+    background-color: @mpris-bg;
+    border-radius: 0;
+    padding: 14px 16px;
+    max-width: 300px;
+    width: 100%;
+    margin: 12px auto;
+}
+
+/* album art */
+.widget-mpris-album-art {
+    border-radius: 6px;
+}
+
+/* title */
+.widget-mpris-title {
+    color: @mpris-text;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+/* artist / subtitle */
+.widget-mpris-subtitle {
+    color: @mpris-subtext;
+    font-size: 0.95rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+}
+
+/* control buttons */
+.widget-mpris button {
+    color: @mpris-text;
+    border-radius: 6px;
+}
+
+.widget-mpris button:hover {
+    background-color: @mpris-btn-hover;
+}
+
+.widget-mpris > box > button {
+    opacity: 0;
+    min-width: 0;
+    padding: 0;
+}
+
+/* Volume widget */
+.widget-volume {
+    padding: 6px 5px 5px 5px;
+    margin: unset;
+    font-size: 1.3rem;
+}
+.widget-volume > box > button {
+    border: none;
+}
+.per-app-volume {
+    padding: 4px 8px 8px 8px;
+    margin: 0px 8px 8px 8px;
+}
+
+/* Backlight widget */
+.widget-backlight {
+    padding: 0 0 3px 16px;
+    margin: unset;
+    font-size: 1.1rem;
+}
+
+/* DND widget */
+.widget-dnd {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: unset;
+    padding: 20px 15px 8px 15px;
+}
+
+.widget-dnd > label {
+    font-size: 1rem;
+}
+
+.widget-dnd > switch {
+    min-width: 36px;
+    min-height: 20px;
+    font-size: initial;
+    border-radius: 100px;
+    background: @yellow;
+    border: none;
+    box-shadow: none;
+    padding: 2px;
+}
+.widget-dnd > switch:checked {
+    background: @green;
+}
+.widget-dnd > switch slider {
+    background: @background;
+    border-radius: 12px;
+    min-width: 14px;
+    min-height: 14px;
+}
+
+/* Title widget */
+.widget-title {
+    padding: unset;
+    margin: unset;
+    font-weight: bold;
+    padding: 15px;
+}
+.widget-title > label {
+    font-size: 1.1rem;
+}
+.widget-title > button {
+    padding:unset;
+    margin:unset;
+    text-shadow: none;
+    background: #e64553;
+    border: none;
+    box-shadow: none;
+    border-radius: 100px;
+    padding:0px 6px;
+    transition: all .7s ease;
+}
+.widget-title > button:hover {
+    background: alpha(@red, 0.8);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.65);
+}

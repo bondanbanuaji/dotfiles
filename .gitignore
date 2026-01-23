@@ -1,0 +1,14 @@
+# Ignore sensitive data
+*.log
+*.cache
+**/cache/
+**/*_history
+**/.netrwhist
+
+# Ignore nvim specific
+.config/nvim/plugin/
+.config/nvim/.netrwhist
+
+# Ignore any local overrides
+*.local
+

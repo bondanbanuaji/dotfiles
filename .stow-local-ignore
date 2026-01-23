@@ -1,0 +1,12 @@
+# Ignore git files
+\.git
+\.gitignore
+
+# Ignore documentation
+^/README.*
+^/LICENSE.*
+
+# Ignore screenshots/assets
+^/screenshots
+^/assets
+
