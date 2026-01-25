@@ -8,4 +8,4 @@ swww img "$random_wallpaper" --transition-type any --transition-duration 2
 
 cp "$random_wallpaper" ~/.cache/swww/lock.png
 
-~/.config/viegphunt/wallpaper_effects.sh
+~/.config/bobaland/wallpaper_effects.sh
