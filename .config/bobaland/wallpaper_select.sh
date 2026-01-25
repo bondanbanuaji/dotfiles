@@ -19,4 +19,4 @@ swww img "$image_fullname_path" --transition-type any --transition-duration 2
 cp "$image_fullname_path" ~/.cache/swww/lock.png
 
 # efek tambahan lu tetep jalan
-~/.config/viegphunt/wallpaper_effects.sh
+~/.config/bobaland/wallpaper_effects.sh
