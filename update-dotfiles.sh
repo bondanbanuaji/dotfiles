@@ -12,7 +12,7 @@ cp -r ~/.config/nvim/* .config/nvim/ 2>/dev/null || true
 cp -r ~/.config/ohmyposh/* .config/ohmyposh/ 2>/dev/null || true
 cp -r ~/.config/rofi/* .config/rofi/ 2>/dev/null || true
 cp -r ~/.config/swaync/* .config/swaync/ 2>/dev/null || true
-cp -r ~/.config/viegphunt/* .config/viegphunt/ 2>/dev/null || true
+cp -r ~/.config/bobaland/* .config/bobaland/ 2>/dev/null || true
 cp -r ~/.config/waybar/* .config/waybar/ 2>/dev/null || true
 cp -r ~/.config/wlogout/* .config/wlogout/ 2>/dev/null || true
 cp ~/.tmux.conf . 2>/dev/null || true
