@@ -21,7 +21,6 @@ tooltip {
     min-height: 24px;
 }
 
-/* WORKSPACES */
 #workspaces {
     margin: 0;
     background: alpha(@background, 0.65);
@@ -115,6 +114,7 @@ tooltip {
     color: @blue;
 }
 
+
 #custom-power {
     margin: 0 3px;
     margin-left: 8px;
@@ -129,6 +129,7 @@ tooltip {
 }
 
 #custom-miku {
+    background: alpha(@background, 0.65);
     background-image: url("assets/miku.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -137,7 +138,7 @@ tooltip {
     min-height: 16px;
     margin: 0 8px;
     padding: 4px;
-    border-radius: 12px;
+    border-radius: 10px;
     opacity: 0.85;
     transition: background-color 0.25s ease, box-shadow 0.25s ease, opacity 0.2s ease, padding 0.2s ease;
     color: transparent;
@@ -145,11 +146,5 @@ tooltip {
 
 #custom-miku:hover {
     opacity: 1;
-    background-color: rgba(137, 180, 250, 0.29);
-    box-shadow: 0 0 6px rgba(137, 180, 250, 0.6), 0 0 14px rgba(137, 180, 250, 0.35), inset 0 0 6px rgba(137, 180, 250, 0.25);
-}
-
-#custom-miku:active {
-    padding: 3px;
-    box-shadow: 0 0 6px rgba(137, 180, 250, 0.8), inset 0 0 4px rgba(137, 180, 250, 0.5);
+    background-color: alpha(@select, 0.6);
 }
