@@ -6,8 +6,8 @@
   "margin-right": 0,
 
   "modules-left": ["custom/power", "hyprland/workspaces"],
-  "modules-center": ["custom/miku"],
-  "modules-right": ["tray", "bluetooth", "network", "battery", "pulseaudio", "clock"],
+  "modules-center": [""],
+  "modules-right": ["tray", "bluetooth", "network", "battery", "pulseaudio", "clock", "custom/miku"],
 
   "custom/power": {
     "format": "⭐",
@@ -18,8 +18,8 @@
   "custom/miku": {
   "format": " ",
   "tooltip": false,
-  "on-click": "rofi -show drun -theme ~/Dotfiles/.config/rofi/launcher.rasi"
-  },
+  "on-click": "swaync-client -t -sw"
+},
 
   "hyprland/workspaces": {
     "disable-scroll": false,
@@ -119,7 +119,5 @@
         "today": "<span color='#F9E2AF'><b>{}</b></span>"
       }
     },
-
-    "on-click": "swaync-client -t -sw"
   }
 }
