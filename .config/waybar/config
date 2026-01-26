@@ -1,6 +1,9 @@
 {
   "layer": "top",
   "position": "top",
+  "margin-top": 3,
+  "margin-left": 0,
+  "margin-right": 0,
 
   "modules-left": ["custom/power", "hyprland/workspaces"],
   "modules-center": ["custom/miku"],
@@ -11,7 +14,7 @@
     "tooltip": false,
     "on-click": "sh -c 'wlogout -b 5'"
   },
-  
+
   "custom/miku": {
   "format": " ",
   "tooltip": false,
