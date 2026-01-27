@@ -1,0 +1,13 @@
+# Tokyo Night for btop
+background = "234"          # dark
+text = "250"
+cursor = "81"
+number = "245"
+progress = "75"
+highlight = "75"
+accent = "75"
+warning = "203"
+error = "203"
+info = "80"
+headings = "75"
+graph = "75"

@@ -1,7 +1,7 @@
-
 #!/usr/bin/env bash
 
-rofi -show drun \
-     -show-icons \
-     -display-drun "Applications" \
-     -theme-str 'window {width: 600px;}'
+if pidof rofi > /dev/null; then
+    pkill rofi
+fi
+
+rofi -show drun -theme ~/.config/rofi/retro-dark.rasi

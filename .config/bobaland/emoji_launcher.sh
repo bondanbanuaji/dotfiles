@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
+THEME="$HOME/.config/rofi/retro-dark.rasi"
+
 if command -v rofimoji &> /dev/null; then
-    rofimoji
+    rofimoji --rofi-args="-theme $THEME"
 elif command -v rofi-emoji &> /dev/null; then
-    rofi -show emoji -modi emoji
+    rofi -show emoji -modi emoji -theme "$THEME"
 else
-    # Fallback: use character mode
-    rofi -show character
+    notify-send "Emoji Launcher" "Neither rofimoji nor rofi-emoji is installed"
+    rofi -show character -theme "$THEME"
 fi

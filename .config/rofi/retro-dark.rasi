@@ -1,0 +1,221 @@
+/*******************************************************************************
+ * ROFI ZERO TWO THEME 🌸
+ * Colorful Anime Aesthetic - Zero Two Inspired
+ * Japanese Retro Vibes | Light Mode
+ ******************************************************************************/
+
+* {
+    /* Colorful Pastel on Black Palette 🎨 */
+    bg-main:        #000000;      /* Pure black background */
+    bg-alt:         #1a1a1a;      /* Dark charcoal */
+    bg-selected:    #2a2a2a;      /* Dark gray selection */
+    bg-hover:       #151515;      /* Subtle hover */
+
+    fg-main:        #ffd1dc;      /* Pastel pink text */
+    fg-dim:         #b19cd9;      /* Pastel purple dimmed */
+    fg-bright:      #fffacd;      /* Pastel lemon */
+
+    /* Colorful Pastel Palette */
+    pastel-pink:    #ffb3d9;      /* Soft pink */
+    pastel-blue:    #aec6ff;      /* Sky blue */
+    pastel-purple:  #d4bbff;      /* Lavender */
+    pastel-cyan:    #b3f0ff;      /* Soft cyan */
+    pastel-green:   #b3ffb3;      /* Mint green */
+    pastel-yellow:  #fff9b3;      /* Soft yellow */
+    pastel-orange:  #ffd6b3;      /* Peach */
+    pastel-coral:   #ffb3c1;      /* Soft coral */
+
+    accent:         @pastel-cyan;
+    highlight:      @pastel-purple;
+    glow:           @pastel-pink;
+
+    background-color: transparent;
+    text-color:       @fg-main;
+
+    margin:     0px;
+    padding:    0px;
+    spacing:    0px;
+
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+window {
+    location:           center;
+    width:              500px;
+    border-radius:      16px;
+
+    background-color:   @bg-main;
+
+    /* Colorful gradient border */
+    border:             3px solid;
+    border-color:       @accent;
+}
+
+mainbox {
+    padding:    18px;
+    spacing:    12px;
+}
+
+/* Kawaii Header */
+textbox-custom {
+    str: "━━━━━━━━━━━━━━━━━━━━━━━━━━\n   🌸 ZERO TWO LAUNCHER 🌸   \n━━━━━━━━━━━━━━━━━━━━━━━━━━";
+    text-color:         @pastel-pink;
+    font:               "JetBrainsMono Nerd Font Bold 10";
+    horizontal-align:   0.5;
+    margin:             0px 0px 8px 0px;
+}
+
+inputbar {
+    spacing:            12px;
+    padding:            14px 18px;
+    background-color:   @bg-alt;
+    border-radius:      15px;
+
+    /* Colorful border */
+    border:             3px solid;
+    border-color:       @glow;
+
+    children: [ prompt, entry ];
+}
+
+prompt {
+    text-color:     @pastel-cyan;
+    font:           "JetBrainsMono Nerd Font Bold 13";
+    padding:        0px 10px 0px 0px;
+}
+
+entry {
+    text-color:     @pastel-yellow;
+    font:           "JetBrainsMono Nerd Font 12";
+    placeholder:        "Search apps...";
+    placeholder-color:  @pastel-blue;
+}
+
+message {
+    background-color:   @bg-alt;
+    border-radius:      12px;
+    padding:            12px;
+    margin:             8px 0px;
+
+    border:             2px solid;
+    border-color:       @pastel-orange;
+}
+
+textbox {
+    padding:        10px;
+    text-color:     @fg-main;
+}
+
+listview {
+    lines:          6;
+    columns:        1;
+    fixed-height:   true;
+
+    spacing:        5px;
+    scrollbar:      false;
+    padding:        8px 4px;
+
+    background-color: transparent;
+}
+
+element {
+    padding:            14px 18px;
+    spacing:            15px;
+    border-radius:      12px;
+
+    background-color:   transparent;
+    text-color:         @fg-main;
+}
+
+element normal.normal {
+    background-color:   transparent;
+    text-color:         @pastel-purple;
+}
+
+element alternate.normal {
+    background-color:   @bg-hover;
+    text-color:         @pastel-green;
+}
+
+/* Colorful selection with gradient feel */
+element selected.normal,
+element selected.active {
+    background-color:   @bg-selected;
+    text-color:         @pastel-pink;
+
+    border:             3px solid;
+    border-color:       @pastel-cyan;
+}
+
+element-icon {
+    size:               42px;
+    background-color:   transparent;
+}
+
+element selected.normal element-icon,
+element selected.active element-icon {
+    /* Icon stands out when selected */
+    text-color: @pastel-yellow;
+}
+
+element-text {
+    vertical-align:     0.5;
+    background-color:   transparent;
+    text-color:         inherit;
+    font:               "JetBrainsMono Nerd Font 11";
+}
+
+element selected.normal element-text,
+element selected.active element-text {
+    text-color:     @pastel-pink;
+    font:           "JetBrainsMono Nerd Font Bold 12";
+}
+
+/* Retro colorful scrollbar */
+scrollbar {
+    width:              8px;
+    handle-color:       @accent;
+    background-color:   @bg-hover;
+    border-radius:      10px;
+    padding:            3px;
+    margin:             0px 0px 0px 8px;
+    
+    border:             2px solid;
+    border-color:       @pastel-purple;
+}
+
+/* Kawaii error message */
+error-message {
+    background-color:   @bg-alt;
+    border:             3px solid;
+    border-color:       @pastel-coral;
+    border-radius:      16px;
+    padding:            25px;
+}
+
+error-message textbox {
+    text-color:     @pastel-orange;
+    font:           "JetBrainsMono Nerd Font Bold 12";
+}
+
+/* Retro mode switcher */
+mode-switcher {
+    spacing:    10px;
+    padding:    8px;
+}
+
+button {
+    padding:            12px 18px;
+    border-radius:      10px;
+    background-color:   @bg-alt;
+    text-color:         @pastel-blue;
+    border:             2px solid;
+    border-color:       @pastel-green;
+}
+
+button.selected {
+    background-color:   @bg-selected;
+    text-color:         @pastel-yellow;
+    border-color:       @pastel-pink;
+    font:               "JetBrainsMono Nerd Font Bold 10";
+}

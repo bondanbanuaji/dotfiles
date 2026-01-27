@@ -98,19 +98,19 @@
 #workspaces button.active {
     color: @pink;
     background-color: alpha(@pink, 0.35);
-    border: 2px solid @pink;
-    padding: 0 10px;
+    border: 1px solid @pink;
+    padding: 0 8px;
     margin: 0 3px;
 }
 
 #workspaces button.urgent {
+    padding: 0 8px;
     color: @red;
-    background-color: alpha(@red, 0.15);
-    padding: 0 9px;
 }
 
 #workspaces button:hover {
     color: @pink;
+    background-color: alpha(@pink, 0.35);
     transition: none;
     border-bottom: 1px solid @pink;
     padding: 0 8px;

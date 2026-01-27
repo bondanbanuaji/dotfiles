@@ -1,0 +1,39 @@
+# === TOP ===
+box cpu {
+    x=0
+    y=0
+    width=100
+    height=28
+}
+
+# === MIDDLE LEFT ===
+box mem {
+    x=0
+    y=28
+    width=33
+    height=22
+}
+
+# === MIDDLE CENTER ===
+box disks {
+    x=33
+    y=28
+    width=34
+    height=22
+}
+
+# === RIGHT SIDE (FULL HEIGHT) ===
+box proc {
+    x=67
+    y=28
+    width=33
+    height=44
+}
+
+# === BOTTOM LEFT ===
+box net {
+    x=0
+    y=50
+    width=67
+    height=22
+}

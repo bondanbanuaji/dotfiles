@@ -6,7 +6,7 @@ WALLDIR="$HOME/Pictures/Wallpapers"
 
 SELECTED=$(for img in "$WALLDIR"/*; do
   echo -en "$(basename "${img%.*}")\0icon\x1f$img\n"
-done | rofi -dmenu -p "  Wallpaper" -theme-str '
+done | rofi -dmenu -p "  Wallpaper" -theme ~/.config/rofi/retro-dark.rasi -theme-str '
 window {width: 500;}
 listview {lines: 8;}
 ')
