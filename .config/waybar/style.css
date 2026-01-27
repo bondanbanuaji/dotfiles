@@ -1,19 +1,33 @@
-/* @import "$HOME/.config/colors/colors.css" */
+/*
+ * ╔══════════════════════════════════════════════════════════════╗
+ * ║                     WAYBAR STYLESHEET                        ║
+ * ║         Transparent Floating Modules + Number Workspace      ║
+ * ╚══════════════════════════════════════════════════════════════╝
+ */
+
 @import "../colors/colors.css";
+
+/* ═══════════════════════════════════════════════════════════
+ * GLOBAL DEFAULTS
+ * ══════════════════════════════════════════════════════════ */
 
 * {
     font-family: "JetBrainsMono Nerd Font", monospace;
     font-size: 11px;
     font-weight: bold;
-    background-color: transparent;
-    border-radius: 5px;
+
+    background: transparent;
+    border: none;
     min-height: 0;
 }
 
-window,
-tooltip {
-    background-color: @background;
+#waybar {
+    background: transparent;
 }
+
+/* ═══════════════════════════════════════════════════════════
+ * WAYBAR BASE - Transparent Background
+ * ══════════════════════════════════════════════════════════ */
 
 #waybar {
     background: transparent;
@@ -21,17 +35,78 @@ tooltip {
     min-height: 24px;
 }
 
-#workspaces {
-    margin: 0;
+/* ═══════════════════════════════════════════════════════════
+ * LEFT MODULES
+ * ══════════════════════════════════════════════════════════ */
+
+/* Power Button */
+#custom-power {
     background: alpha(@background, 0.65);
     border-radius: 10px;
-    padding: 2px 4px;
+    padding: 0 10px;
+    margin: 0 4px;
+    color: @foreground;
+}
+
+/* Activity Module - ALWAYS VISIBLE */
+#custom-activity {
+    background: alpha(@background, 0.65);
+    border-radius: 10px;
+    padding: 0 10px;
+    margin: 0 4px;
+    color: @foreground;
+    transition: all 0.3s ease;
+}
+
+/* Toggle animation via class change */
+#custom-activity.slide-0 {
+    color: @foreground;
+}
+
+#custom-activity.slide-1 {
+    color: @foreground;
+}
+
+@keyframes colorshift {
+    0%   { color: @pink; }
+    25%  { color: @blue; }
+    50%  { color: @green; }
+    75%  { color: @purple; }
+    100% { color: @pink; }
+}
+
+#custom-activity:hover {
+    background-color: alpha(@select, 0.6);
+}
+
+/* ═══════════════════════════════════════════════════════════
+ * CENTER MODULE - Workspace Numbers
+ * ══════════════════════════════════════════════════════════ */
+
+#workspaces {
+    background: alpha(@background, 0.75);
+    border-radius: 10px;
+    padding: 0px 4px;
 }
 
 #workspaces button {
     color: @foreground;
     border: none;
-    padding: 0 6px;
+    padding: 0 7px;
+}
+
+#workspaces button.active {
+    color: @pink;
+    background-color: alpha(@pink, 0.35);
+    border: 2px solid @pink;
+    padding: 0 10px;
+    margin: 0 3px;
+}
+
+#workspaces button.urgent {
+    color: @red;
+    background-color: alpha(@red, 0.15);
+    padding: 0 9px;
 }
 
 #workspaces button:hover {
@@ -41,18 +116,9 @@ tooltip {
     padding: 0 8px;
 }
 
-#workspaces button.active {
-    color: @pink;
-    background-color: alpha(@pink, 0.35);
-    border: 2px solid @pink;
-    padding: 0 9px;
-    margin: 0 2px;
-}
-
-#workspaces button.urgent {
-    background-color: @red;
-    padding: 0 9px;
-}
+/* ═══════════════════════════════════════════════════════════
+ * RIGHT MODULES - System Info
+ * ══════════════════════════════════════════════════════════ */
 
 #tray,
 #bluetooth,
@@ -73,6 +139,7 @@ tooltip {
     background-color: alpha(@select, 0.6);
 }
 
+/* Individual Module Colors */
 #bluetooth {
     color: @yellow;
 }
@@ -89,6 +156,10 @@ tooltip {
     margin-right: 6px;
     color: @blue;
 }
+
+/* ═══════════════════════════════════════════════════════════
+ * NETWORK MODULE - Multi-state Colors
+ * ══════════════════════════════════════════════════════════ */
 
 #network {
     color: @green;
@@ -114,33 +185,23 @@ tooltip {
     color: @blue;
 }
 
-
-#custom-power {
-    margin: 0 3px;
-    margin-left: 8px;
-    padding: 0 10px;
-    background: alpha(@background, 0.65);
-    border-radius: 10px;
-    color: @pink;
-}
-
-#custom-power:hover {
-    background-color: alpha(@select, 0.6);
-}
+/* ═══════════════════════════════════════════════════════════
+ * NOTIFICATION CENTER - Miku Icon
+ * ══════════════════════════════════════════════════════════ */
 
 #custom-miku {
     background: alpha(@background, 0.65);
-    background-image: url("assets/miku.png");
+    background-image: url("assets/zero.png");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 70%;
+    background-size: 100%;
     min-width: 16px;
     min-height: 16px;
     margin: 0 8px;
     padding: 4px;
     border-radius: 10px;
     opacity: 0.85;
-    transition: background-color 0.25s ease, box-shadow 0.25s ease, opacity 0.2s ease, padding 0.2s ease;
+    transition: background-color 0.25s ease, opacity 0.2s ease;
     color: transparent;
 }
 

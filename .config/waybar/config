@@ -1,30 +1,56 @@
+/*
+ * ╔══════════════════════════════════════════════════════════════╗
+ * ║                    WAYBAR CONFIGURATION                      ║
+ * ╚══════════════════════════════════════════════════════════════╝
+ */
+
 {
   "layer": "top",
   "position": "top",
   "margin-top": 3,
-  "margin-left": 0,
-  "margin-right": 0,
 
-  "modules-left": ["custom/power", "hyprland/workspaces"],
-  "modules-center": [""],
-  "modules-right": ["tray", "bluetooth", "network", "battery", "pulseaudio", "clock", "custom/miku"],
+  "modules-left": [
+    "custom/power",
+    "custom/activity"
+  ],
+
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+
+  "modules-right": [
+    "tray",
+    "bluetooth",
+    "network",
+    "battery",
+    "pulseaudio",
+    "clock",
+    "custom/miku"
+  ],
+
+  /* ───────── LEFT ───────── */
 
   "custom/power": {
     "format": "⭐",
     "tooltip": false,
-    "on-click": "sh -c 'wlogout -b 5'"
+    "on-click": "wlogout -b 5"
   },
 
-  "custom/miku": {
-  "format": " ",
-  "tooltip": false,
-  "on-click": "swaync-client -t -sw"
+"custom/activity": {
+  "exec": "~/.config/waybar/scripts/activity.sh",
+  "return-type": "json",
+  "format": "{}",
+  "interval": 1,
+  "tooltip": false
 },
+
+  /* ───────── CENTER (WORKSPACES) ───────── */
 
   "hyprland/workspaces": {
     "disable-scroll": false,
     "all-outputs": true,
     "warp-on-scroll": false,
+
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
 
@@ -40,24 +66,27 @@
       "4": "4",
       "5": "5",
       "6": "6",
-      "7": "7",
+      "7": "7"
     },
+
     "persistent-workspaces": {
       "*": [1, 2, 3, 4, 5, 6, 7]
     },
+
     "cursor": true
   },
+
+  /* ───────── RIGHT ───────── */
 
   "tray": {
     "icon-size": 20,
-    "spacing": 10,
-    "cursor": true
+    "spacing": 10
   },
 
   "bluetooth": {
-    "format": " 󰂯 ",
-    "format-disabled": " 󰂲 ",
-    "format-connected": " 󰂱 ",
+    "format": "󰂯",
+    "format-disabled": "󰂲",
+    "format-connected": "󰂱",
     "on-click": "blueman-manager",
     "tooltip": false
   },
@@ -67,13 +96,16 @@
     "format-ethernet": "  Ethernet",
     "format-linked": "  Linked (No IP)",
     "format-disconnected": "  Disconnected",
-    "tooltip-format": "󰈀 {ifname} via {gwaddr}",
-    "tooltip-format-wifi": "  {essid}\n󰤟  Signal: {signalStrength}%\n󰁞  {bandwidthUpBits}   󰁄  {bandwidthDownBits}",
-    "tooltip-format-ethernet": "  {ifname}\n󰁞  {bandwidthUpBits}   󰁄  {bandwidthDownBits}",
+
+    "tooltip-format": "󰈀  {ifname} via {gwaddr}",
+    "tooltip-format-wifi": "  {essid}\n󰤟 Signal: {signalStrength}%\n󰁞 {bandwidthUpBits}   󰁄 {bandwidthDownBits}",
+    "tooltip-format-ethernet": "  {ifname}\n󰁞 {bandwidthUpBits}   󰁄 {bandwidthDownBits}",
     "tooltip-format-disconnected": "󰅛  Disconnected",
-    "on-click": "nm-connection-editor",
+
+    "on-click": "iwgtk",
     "interval": 5,
-    "format-alt": "󰩟  {ipaddr}/{cidr}"
+
+    "format-alt": "󰩟 {ipaddr}/{cidr}"
   },
 
   "battery": {
@@ -82,42 +114,49 @@
       "warning": 30,
       "critical": 15
     },
+
     "format": "{icon} {capacity}%",
     "format-full": "{icon} {capacity}%",
     "format-plugged": " {capacity}%",
     "format-charging": " {capacity}%",
     "format-alt": "{icon} {capacity}%",
-    "format-icons": [" ", " ", " ", " ", " "],
+
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ],
+
     "tooltip-format": "{time}",
     "cursor": false
   },
 
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "format-muted": "  {volume}%",
+    "format-muted": " {volume}%",
     "format-bluetooth": " {volume}%",
-    "format-bluetooth-muted": "  {volume}%",
+    "format-bluetooth-muted": " {volume}%",
+
     "format-icons": {
       "headphone": " ",
       "headset": " ",
       "default": [" "]
     },
+
     "on-click": "pavucontrol",
     "tooltip": false
   },
 
   "clock": {
     "format": "{:%a %d/%m/%Y ~ %H:%M}",
-    "tooltip-format": "<span size='15000'><tt>{calendar}</tt></span>",
+    "tooltip": false
+  },
 
-    "calendar": {
-      "mode": "month",
-      "format": {
-        "months": "<span color='#F5C2E7'><b>{}</b></span>",
-        "weekdays": "<span color='#89B4FA'><b>{}</b></span>",
-        "days": "<span color='#CDD6F4'><b>{}</b></span>",
-        "today": "<span color='#F9E2AF'><b>{}</b></span>"
-      }
-    },
+  "custom/miku": {
+    "format": " ",
+    "on-click": "swaync-client -t -sw",
+    "tooltip": false
   }
 }
