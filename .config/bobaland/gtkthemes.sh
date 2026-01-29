@@ -2,8 +2,9 @@
 
 SCHEME="prefer-dark"
 THEME="adw-gtk3-dark"
-ICONS="WhiteSur-dark"
+ICONS="Papirus-Dark"
 CURSOR="macOS"
+CURSOR_SIZE="35"
 UI_FONT="Segoe UI Variable Static Text 12"
 MONO_FONT="JetBrainsMono Nerd Font 12"
 
@@ -14,6 +15,7 @@ apply_themes() {
     ${SCHEMA} gtk-theme "$THEME"
     ${SCHEMA} icon-theme "$ICONS"
     ${SCHEMA} cursor-theme "$CURSOR"
+    ${SCHEMA} cursor-size "$CURSOR_SIZE"
     ${SCHEMA} font-name "$UI_FONT"
     ${SCHEMA} monospace-font-name "$MONO_FONT"
 }

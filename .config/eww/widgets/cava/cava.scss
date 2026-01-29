@@ -1,0 +1,14 @@
+.cava-box {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.cava-bar {
+  min-width: 5px;
+  max-height: 40px;
+  background: linear-gradient(to top, #00ffff, #00ff00);
+  border-radius: 2px;
+  transition: all 0.1s ease;
+}

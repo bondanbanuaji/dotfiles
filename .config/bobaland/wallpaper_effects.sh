@@ -4,6 +4,9 @@ set -e
 WALL="$1"
 [ -z "$WALL" ] && exit 0
 
+# Save current wallpaper for restoration
+echo "$WALL" > "$HOME/.cache/current_wallpaper"
+
 CACHE="$HOME/.cache/swww"
 mkdir -p "$CACHE"
 
@@ -12,6 +15,7 @@ BLUR="$CACHE/wallpaper_blur.png"
 DARK="$CACHE/wallpaper_dark.png"
 VIGNETTE="$CACHE/wallpaper_vignette.png"
 LOCK="$CACHE/lock.png"
+VIDEO_THUMB="$CACHE/video_thumb.png"
 
 # ───────────────────────────────
 # Random cinematic origin (weighted)
@@ -63,42 +67,98 @@ BEZIERS=(
 )
 BEZIER=${BEZIERS[RANDOM % ${#BEZIERS[@]}]}
 
-# Ultra smooth transition with randomized elegance
-swww img "$WALL" \
-  --transition-type "$TRANSITION_TYPE" \
-  --transition-pos "$POS" \
-  --transition-duration 4.8 \
-  --transition-fps 120 \
-  --transition-bezier "$BEZIER" \
-  --transition-angle $(( RANDOM % 360 )) \
-  --transition-step 90
+# Detect if video
+EXT="${WALL##*.}"
+IS_VIDEO=false
+if [[ "$EXT" =~ ^(mp4|mkv|webm|mov|avi|flv|wmv)$ ]]; then
+    IS_VIDEO=true
+fi
+
+# Ensure swww is running (needed for both image and video transition)
+if ! pgrep -x swww-daemon > /dev/null; then
+    swww-daemon --format xrgb >/dev/null 2>&1 &
+    sleep 0.5 
+fi
+
+if [ "$IS_VIDEO" = true ]; then
+    # VIDEO WALLPAPER LOGIC
+    if ! command -v mpvpaper &> /dev/null; then
+        notify-send "Error" "mpvpaper not found. Please install it to use video wallpapers."
+        exit 1
+    fi
+
+    # Kill any existing mpvpaper instances
+    pkill mpvpaper || true
+
+    # Extract first frame for transition
+    # Use -vf scale to ensure correct size if needed, but swww handles it.
+    ffmpeg -y -i "$WALL" -vframes 1 -f image2 "$VIDEO_THUMB" >/dev/null 2>&1
+    
+    # 1. Start visual transition using swww with the first frame
+    swww img "$VIDEO_THUMB" \
+      --transition-type "$TRANSITION_TYPE" \
+      --transition-pos "$POS" \
+      --transition-duration 3.0 \
+      --transition-fps 60 \
+      --transition-bezier "$BEZIER" \
+      --transition-angle $(( RANDOM % 360 )) \
+      --transition-step 90
+
+    # 2. Wait for transition to mostly complete
+    sleep 3.0
+
+    # 3. Start mpvpaper (seamless handover)
+    # Using --no-keepaspect-window or panscan to match typical wallpaper filling
+    nohup mpvpaper '*' "$WALL" -o "loop --panscan=1.0" >/dev/null 2>&1 &
+
+    # Copy thumb for lockscreen
+    cp "$VIDEO_THUMB" "$LOCK"
+
+else
+    # IMAGE WALLPAPER LOGIC
+    
+    # Kill mpvpaper if running
+    pkill mpvpaper || true
+
+    # Ultra smooth transition with randomized elegance
+    swww img "$WALL" \
+      --transition-type "$TRANSITION_TYPE" \
+      --transition-pos "$POS" \
+      --transition-duration 3.0 \
+      --transition-fps 60 \
+      --transition-bezier "$BEZIER" \
+      --transition-angle $(( RANDOM % 360 )) \
+      --transition-step 90
+
+    # Cache lockscreen base
+    cp "$WALL" "$LOCK"
+fi
 
 # ═══════════════════════════════════════════════════════════════
-# 💎 PREMIUM IMAGE PROCESSING - Museum Quality
+# 💎 PREMIUM IMAGE PROCESSING - FOR LOCKSCREEN THUMBNAILS
 # ═══════════════════════════════════════════════════════════════
 
-# Cache lockscreen base
-cp "$WALL" "$LOCK"
+if [ -f "$LOCK" ]; then
+    # Ensure vipsthumbnail works on the lock image
+    vipsthumbnail "$LOCK" \
+      --size 2560x1440 \
+      --smartcrop attention \
+      --linear \
+      -o "$NORMAL"
 
-# High-quality thumbnail with intelligent cropping
-vipsthumbnail "$WALL" \
-  --size 2560x1440 \
-  --smartcrop attention \
-  --linear \
-  -o "$NORMAL"
+    # ───────────────────────────────────────────────────────────────
+    # 🌫️ Luxe Glass Blur - Premium Glassmorphism
+    # ───────────────────────────────────────────────────────────────
+    vips gaussianblur "$NORMAL" "$BLUR" 28 --precision integer
+    vips linear "$BLUR" "$BLUR" 1.05 2
 
-# ───────────────────────────────────────────────────────────────
-# 🌫️ Luxe Glass Blur - Premium Glassmorphism
-# ───────────────────────────────────────────────────────────────
-vips gaussianblur "$NORMAL" "$BLUR" 28 --precision integer
-vips linear "$BLUR" "$BLUR" 1.05 2
-
-# ───────────────────────────────────────────────────────────────
-# 🌑 Cinematic Depth + Vignette - Film Grade
-# ───────────────────────────────────────────────────────────────
-vips linear "$NORMAL" "$DARK" 0.62 -8
-vips vignette "$DARK" "$VIGNETTE" \
-  --radius 0.92 \
-  --strength 0.38
+    # ───────────────────────────────────────────────────────────────
+    # 🌑 Cinematic Depth + Vignette - Film Grade
+    # ───────────────────────────────────────────────────────────────
+    vips linear "$NORMAL" "$DARK" 0.62 -8
+    vips vignette "$DARK" "$VIGNETTE" \
+      --radius 0.92 \
+      --strength 0.38
+fi
 
 exit 0

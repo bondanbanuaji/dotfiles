@@ -1,0 +1,35 @@
+;; Spotify Widget - Compact Size
+(defwidget spotify []
+  (box :class "spotify-box"
+       :orientation "v"
+       :space-evenly false
+       :spacing 5
+    (box :class "spotify-container"
+         :style "background-image: url('${spotify_cover}');"
+      (box :orientation "v"
+           :class "spotify-content"
+           :space-evenly false
+        (label :class "spotify-title" 
+               :limit-width 15
+               :text "${spotify_title}")
+        (label :class "spotify-artist"
+               :limit-width 12
+               :text "${spotify_artist}")))))
+
+;; Variables
+(defpoll spotify_title :interval "1s" "~/.config/eww/scripts/spotify.sh title")
+(defpoll spotify_artist :interval "1s" "~/.config/eww/scripts/spotify.sh artist")
+(defpoll spotify_cover :interval "2s" "~/.config/eww/scripts/spotify.sh cover")
+
+;; Window definition
+(defwindow spotify
+  :monitor 0
+  :geometry (geometry :x "20px"
+                      :y "20px"
+                      :width "180px"
+                      :height "180px"
+                      :anchor "top left")
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore true
+  (spotify))

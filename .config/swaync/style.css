@@ -2,7 +2,7 @@
 
 * {
     outline: none;
-    font-family: "Segoe UI Variable Static Text", "Font Awesome 6 Free";
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", "Segoe UI Variable Static Text";
     font-size: 18px;
     text-shadow: none;
     color: @foreground;
@@ -42,7 +42,7 @@ scrollbar trough {
     background-color: alpha(@background, 0.8);
 }
 
-.notification > *:last-child > * {
+.notification>*:last-child>* {
     margin: 5px;
 }
 
@@ -62,12 +62,12 @@ scrollbar trough {
     padding: 15px 10px 10px 20px;
 }
 
-.notification-action > button {
+.notification-action>button {
     padding: unset;
     margin: unset;
 }
 
-.notification-action > label {
+.notification-action>label {
     font-size: 1rem;
     font-weight: normal;
 }
@@ -138,14 +138,26 @@ tooltip {
     margin-top: 50px;
 }
 
-.blank-window .empty image {
+.blank-window .empty label:first-child {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 96px;
     color: alpha(@foreground, 0.4);
-    -gtk-icon-size: 96px;
-    min-width: 96px;
-    min-height: 96px;
+    margin-bottom: 20px;
 }
 
-.blank-window .empty label {
+.blank-window .empty label:first-child::before {
+    content: "\f0f3";
+}
+
+.blank-window .empty image {
+    -gtk-icon-size: 0;
+    min-width: 0;
+    min-height: 0;
+    opacity: 0;
+}
+
+.blank-window .empty label:last-child {
     color: alpha(@foreground, 0.5);
     font-size: 1.2rem;
     margin-top: 20px;
@@ -157,7 +169,7 @@ tooltip {
     margin: unset;
 }
 
-.widget-buttons-grid > flowbox > flowboxchild > button {
+.widget-buttons-grid>flowbox>flowboxchild>button {
     background: @gray;
     box-shadow: 0px 0px 10px alpha(@background, 0.8);
     border-radius: 12px;
@@ -168,21 +180,21 @@ tooltip {
     transition: all .5s ease;
 }
 
-.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+.widget-buttons-grid>flowbox>flowboxchild>button:hover {
     background: @select;
 }
 
-.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
+.widget-buttons-grid>flowbox>flowboxchild>button.toggle:checked {
     background: @blue;
 }
 
-.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked:hover {
+.widget-buttons-grid>flowbox>flowboxchild>button.toggle:checked:hover {
     background: alpha(@blue, 0.8);
 }
 
-@define-color mpris-bg rgba(0, 0, 0, 0.65);
+@define-color mpris-bg #000000;
 @define-color mpris-text #ffffff;
-@define-color mpris-subtext rgba(255, 255, 255, 0.75);
+@define-color mpris-subtext rgba(255, 255, 255, 0.95);
 @define-color mpris-btn-hover rgba(255, 255, 255, 0.12);
 
 .widget-mpris {
@@ -192,13 +204,10 @@ tooltip {
 
 .widget-mpris .widget-mpris-player {
     background-color: @mpris-bg;
-    border-radius: 0;
+    border-radius: 12px;
     padding: 14px 16px;
-    min-width: 300px;
-    margin-top: 12px;
-    margin-bottom: 12px;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 12px 10px;
+    box-shadow: none;
 }
 
 .widget-mpris-album-art {
@@ -206,32 +215,35 @@ tooltip {
 }
 
 .widget-mpris-title {
-    color: @mpris-text;
+    color: #ffffff;
     font-weight: 700;
     font-size: 1.15rem;
     letter-spacing: 0.3px;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    text-shadow: none;
+    mix-blend-mode: difference;
 }
 
 .widget-mpris-subtitle {
-    color: @mpris-subtext;
+    color: #ffffff;
     font-size: 0.95rem;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+    text-shadow: none;
+    mix-blend-mode: difference;
 }
 
 .widget-mpris button {
-    color: @mpris-text;
+    color: #ffffff;
     border-radius: 6px;
+    mix-blend-mode: difference;
 }
 
 .widget-mpris button:hover {
-    background-color: @mpris-btn-hover;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-.widget-mpris > box > button {
-    opacity: 0;
-    min-width: 0;
-    padding: 0;
+.widget-mpris>box>button {
+    opacity: 1;
+    padding: 0 10px;
+    mix-blend-mode: difference;
 }
 
 .widget-volume {
@@ -240,7 +252,7 @@ tooltip {
     font-size: 1.3rem;
 }
 
-.widget-volume > box > button {
+.widget-volume>box>button {
     border: none;
 }
 
@@ -262,11 +274,11 @@ tooltip {
     padding: 20px 15px 8px 15px;
 }
 
-.widget-dnd > label {
+.widget-dnd>label {
     font-size: 1rem;
 }
 
-.widget-dnd > switch {
+.widget-dnd>switch {
     min-width: 36px;
     min-height: 20px;
     font-size: initial;
@@ -277,11 +289,11 @@ tooltip {
     padding: 2px;
 }
 
-.widget-dnd > switch:checked {
+.widget-dnd>switch:checked {
     background: @green;
 }
 
-.widget-dnd > switch slider {
+.widget-dnd>switch slider {
     background: @background;
     border-radius: 12px;
     min-width: 14px;
@@ -295,11 +307,11 @@ tooltip {
     padding: 15px;
 }
 
-.widget-title > label {
+.widget-title>label {
     font-size: 1.1rem;
 }
 
-.widget-title > button {
+.widget-title>button {
     padding: unset;
     margin: unset;
     text-shadow: none;
@@ -311,7 +323,7 @@ tooltip {
     transition: all .7s ease;
 }
 
-.widget-title > button:hover {
+.widget-title>button:hover {
     background: alpha(@red, 0.8);
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.65);
 }

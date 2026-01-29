@@ -1,21 +1,19 @@
 /*
  * ╔══════════════════════════════════════════════════════════════╗
  * ║                     WAYBAR STYLESHEET                        ║
- * ║         Transparent Floating Modules + Number Workspace      ║
  * ╚══════════════════════════════════════════════════════════════╝
  */
 
 @import "../colors/colors.css";
 
-/* ═══════════════════════════════════════════════════════════
- * GLOBAL DEFAULTS
- * ══════════════════════════════════════════════════════════ */
+/* ===============================
+ * GLOBAL
+ * =============================== */
 
 * {
     font-family: "JetBrainsMono Nerd Font", monospace;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
-
     background: transparent;
     border: none;
     min-height: 0;
@@ -23,171 +21,151 @@
 
 #waybar {
     background: transparent;
-}
-
-/* ═══════════════════════════════════════════════════════════
- * WAYBAR BASE - Transparent Background
- * ══════════════════════════════════════════════════════════ */
-
-#waybar {
-    background: transparent;
-    border-radius: 0;
     min-height: 24px;
 }
 
-/* ═══════════════════════════════════════════════════════════
+/* ===============================
  * LEFT MODULES
- * ══════════════════════════════════════════════════════════ */
+ * =============================== */
 
-/* Power Button */
 #custom-power {
     background: alpha(@background, 0.65);
+    color: @error;
     border-radius: 10px;
     padding: 0 10px;
     margin: 0 4px;
-    color: @foreground;
 }
 
-/* Activity Module - ALWAYS VISIBLE */
 #custom-activity {
     background: alpha(@background, 0.65);
+    color: @foreground;
     border-radius: 10px;
     padding: 0 10px;
     margin: 0 4px;
-    color: @foreground;
-    transition: all 0.3s ease;
-}
-
-/* Toggle animation via class change */
-#custom-activity.slide-0 {
-    color: @foreground;
-}
-
-#custom-activity.slide-1 {
-    color: @foreground;
-}
-
-@keyframes colorshift {
-    0%   { color: @pink; }
-    25%  { color: @blue; }
-    50%  { color: @green; }
-    75%  { color: @purple; }
-    100% { color: @pink; }
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 #custom-activity:hover {
     background-color: alpha(@select, 0.6);
+    color: @accent-primary;
 }
 
-/* ═══════════════════════════════════════════════════════════
- * CENTER MODULE - Workspace Numbers
- * ══════════════════════════════════════════════════════════ */
+/* ===============================
+ * CENTER – WORKSPACES
+ * =============================== */
 
 #workspaces {
     background: alpha(@background, 0.75);
     border-radius: 10px;
-    padding: 0px 4px;
+    padding: 0 4px;
 }
 
 #workspaces button {
     color: @foreground;
-    border: none;
     padding: 0 7px;
 }
 
 #workspaces button.active {
-    color: @pink;
-    background-color: alpha(@pink, 0.35);
-    border: 1px solid @pink;
-    padding: 0 8px;
+    color: @accent-primary;
+    background-color: alpha(@accent-primary, 0.35);
+    border: 1px solid @accent-primary;
     margin: 0 3px;
 }
 
 #workspaces button.urgent {
-    padding: 0 8px;
-    color: @red;
+    color: @error;
 }
 
 #workspaces button:hover {
-    color: @pink;
-    background-color: alpha(@pink, 0.35);
-    transition: none;
-    border-bottom: 1px solid @pink;
-    padding: 0 8px;
+    color: @accent-secondary;
+    background-color: alpha(@accent-secondary, 0.25);
 }
 
-/* ═══════════════════════════════════════════════════════════
- * RIGHT MODULES - System Info
- * ══════════════════════════════════════════════════════════ */
+/* ===============================
+ * RIGHT MODULES
+ * =============================== */
 
 #tray,
 #bluetooth,
+#custom-cava,
 #battery,
 #pulseaudio,
-#clock {
-    color: @foreground;
-    margin: 0 3px;
-    padding: 0 10px;
+#clock,
+#network {
     background: alpha(@background, 0.65);
     border-radius: 10px;
+    padding: 0 10px;
+    margin: 0 3px;
+    color: @foreground;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
+#tray:hover,
 #bluetooth:hover,
+#custom-cava:hover,
 #battery:hover,
 #pulseaudio:hover,
-#clock:hover {
-    background-color: alpha(@select, 0.6);
-}
-
-/* Individual Module Colors */
-#bluetooth {
-    color: @yellow;
-}
-
-#battery {
-    color: @purple;
-}
-
-#pulseaudio {
-    color: @orange;
-}
-
-#clock {
-    margin-right: 6px;
-    color: @blue;
-}
-
-/* ═══════════════════════════════════════════════════════════
- * NETWORK MODULE - Multi-state Colors
- * ══════════════════════════════════════════════════════════ */
-
-#network {
-    color: @green;
-    background: alpha(@background, 0.65);
-    border-radius: 10px;
-    padding: 0 10px;
-    margin: 0 3px;
-}
-
+#clock:hover,
 #network:hover {
     background-color: alpha(@select, 0.6);
 }
 
-#network.disconnected {
+/* ===============================
+ * MODULE COLORS (SEMANTIC)
+ * =============================== */
+
+#custom-cava {
     color: @red;
 }
 
+#bluetooth {
+    color: @info;
+}
+
+#battery {
+    color: @success;
+}
+
+#battery.warning {
+    color: @warning;
+}
+
+#battery.critical {
+    color: @error;
+}
+
+#pulseaudio {
+    color: @accent-tertiary;
+}
+
+#clock {
+    color: @accent-secondary;
+    margin-right: 6px;
+}
+
+/* ===============================
+ * NETWORK STATES
+ * =============================== */
+
+#network {
+    color: @success;
+}
+
+#network.disconnected {
+    color: @error;
+}
+
 #network.linked {
-    color: @yellow;
+    color: @warning;
 }
 
 #network.ethernet {
-    color: @blue;
+    color: @accent-secondary;
 }
 
-/* ═══════════════════════════════════════════════════════════
- * NOTIFICATION CENTER - Miku Icon
- * ══════════════════════════════════════════════════════════ */
+/* ===============================
+ * NOTIFICATION / CUSTOM ICON
+ * =============================== */
 
 #custom-miku {
     background: alpha(@background, 0.65);
@@ -201,11 +179,11 @@
     padding: 4px;
     border-radius: 10px;
     opacity: 0.85;
-    transition: background-color 0.25s ease, opacity 0.2s ease;
     color: transparent;
+    transition: background-color 0.25s ease, opacity 0.2s ease;
 }
 
 #custom-miku:hover {
-    opacity: 1;
     background-color: alpha(@select, 0.6);
+    opacity: 1;
 }

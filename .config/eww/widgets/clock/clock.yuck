@@ -1,0 +1,22 @@
+;; Clock Widget - Digital style
+(defwidget clock []
+  (box :class "clock-box"
+       :orientation "v"
+       :space-evenly false
+    (label :class "time" :text time)
+    (label :class "date" :text date)))
+
+(defpoll time :interval "1s" "date '+%H:%M'")
+(defpoll date :interval "60s" "date '+%d %b %Y'")
+
+(defwindow clock
+  :monitor 0
+  :geometry (geometry :x "220px"
+                      :y "20px"
+                      :width "120px"
+                      :height "80px"
+                      :anchor "top left")
+  :stacking "fg"
+  :windowtype "dock"
+  :wm-ignore true
+  (clock))

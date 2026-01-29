@@ -1,0 +1,8 @@
+* {
+  all: unset;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+@import './widgets/spotify/spotify.scss';
+@import './widgets/cava/cava.scss';
+@import './widgets/clock/clock.scss';

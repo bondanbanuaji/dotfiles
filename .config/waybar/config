@@ -21,6 +21,7 @@
   "modules-right": [
     "tray",
     "bluetooth",
+    "custom/cava",
     "network",
     "battery",
     "pulseaudio",
@@ -29,6 +30,12 @@
   ],
 
   /* ───────── LEFT ───────── */
+
+  "custom/cava": {
+    "exec": "~/.config/waybar/scripts/cava.sh",
+    "format": "{}",
+    "tooltip": false
+  },
 
   "custom/power": {
     "format": "⭐",

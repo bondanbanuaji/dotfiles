@@ -4,8 +4,12 @@ pkill rofi 2>/dev/null
 
 WALLDIR="$HOME/Pictures/Wallpapers"
 
+
 SELECTED=$(for img in "$WALLDIR"/*; do
-  echo -en "$(basename "${img%.*}")\0icon\x1f$img\n"
+  ext="${img##*.}"
+  if [[ "$ext" =~ ^(jpg|jpeg|png|gif|webp|mp4|mkv|webm|mov|avi|flv|wmv)$ ]]; then
+    echo -en "$(basename "${img%.*}")\0icon\x1f$img\n"
+  fi
 done | rofi -dmenu -p "  Wallpaper" -theme ~/.config/rofi/retro-dark.rasi -theme-str '
 window {width: 500;}
 listview {lines: 8;}

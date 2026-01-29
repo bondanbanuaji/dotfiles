@@ -1,0 +1,38 @@
+;; Variables Musik
+(defpoll music_title :interval "1s" "playerctl metadata --format '{{title}}' || echo 'No Music'")
+(defpoll music_artist :interval "1s" "playerctl metadata --format '{{artist}}' || echo 'Offline'")
+(defpoll music_status :interval "1s" "playerctl status || echo 'Stopped'")
+
+(defwidget music_widget []
+  (box :class "music-box" :orientation "h" :space-evenly false
+    
+    ;; Piringan/Icon dengan rotasi kalau lagu jalan
+    (box :class {music_status == "Playing" ? "music-art-play" : "music-art"}
+         (label :text "󰝚"))
+
+    (box :orientation "v" :space-evenly false :valign "center" :class "music-info"
+      (label :class "music-title" :text music_title :limit-width 20 :halign "start")
+      (label :class "music-artist" :text music_artist :limit-width 25 :halign "start")
+      
+      ;; Visualizer Batang DJ (Lebih banyak bar biar mantap)
+      (box :class "visualizer" :spacing 4 :halign "start"
+        (box :class {music_status == "Playing" ? "bar b1" : "bar"})
+        (box :class {music_status == "Playing" ? "bar b2" : "bar"})
+        (box :class {music_status == "Playing" ? "bar b3" : "bar"})
+        (box :class {music_status == "Playing" ? "bar b4" : "bar"})
+        (box :class {music_status == "Playing" ? "bar b5" : "bar"})
+        (box :class {music_status == "Playing" ? "bar b6" : "bar"})
+        (box :class {music_status == "Playing" ? "bar b1" : "bar"})
+        (box :class {music_status == "Playing" ? "bar b2" : "bar"}))
+    )
+  ))
+
+(defwindow music_win
+  :monitor 0
+  :geometry (geometry :x "40px"
+                     :y "210px" 
+                     :width "400px"
+                     :height "120px"
+                     :anchor "top left")
+  :stacking "bg"
+  (music_widget))

@@ -1,0 +1,4 @@
+;; Import all widgets
+(include "./widgets/spotify/spotify.yuck")
+(include "./widgets/cava/cava.yuck")
+(include "./widgets/clock/clock.yuck")
